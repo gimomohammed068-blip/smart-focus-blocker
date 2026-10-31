@@ -1,0 +1,9 @@
+{
+  "name": "Smart Focus Blocker",
+  "short_name": "Focus",
+  "description": "Smart Focus Blocker App",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#121214",
+  "theme_color": "#3b82f6"
+}
