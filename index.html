@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Focus Blocker</title>
+    <style>
+        :root { --bg: #121214; --card: #1a1a1e; --text: #ffffff; --primary: #3b82f6; --danger: #ef4444; }
+        body { font-family: sans-serif; background: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 500px; background: var(--card); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #2d2d34; }
+        .btn { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; margin: 8px 0; cursor: pointer; font-weight: bold; font-size: 16px; }
+        .btn-danger { background: var(--danger); }
+        .modal { position: fixed; top:0; bottom:0; left:0; right:0; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .timer { font-size: 48px; margin: 20px; color: var(--primary); font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>🛡️ تطبيق التركيز الذكي (Smart Focus)</h2>
+    <p>اختر منصة لتجربة حجز الوعي والمقاومة الذكية:</p>
+    <button class="btn" onclick="openModal('TikTok')">زيارة TikTok 🎬</button>
+    <button class="btn" onclick="openModal('Instagram Reels')">زيارة Instagram Reels 📱</button>
+    <button class="btn btn-danger" onclick="alert('🚨 تم تفعيل وضع الذعر بنجاح! تم قفل كافة المشتتات لمدة 60 دقيقة كاملة.')">🚨 تفعيل وضع الذعر (Panic Mode)</button>
+</div>
+
+<div class="modal" id="lockModal">
+    <div class="container">
+        <h3>توقف للحظة واسترخِ 🛑</h3>
+        <p>العقل التلقائي يقودك لفتح وسائل التواصل بدون وعي.</p>
+        <p>خذ شهيقاً وزفيراً عميقاً...</p>
+        <div class="timer" id="timerNum">10</div>
+        <button class="btn btn-danger" onclick="closeModal()">تراجع، سأعود للعمل 🎯</button>
+    </div>
+</div>
+
+<script>
+    function openModal(platform) {
+        document.getElementById('lockModal').style.display = 'flex';
+        let count = 10;
+        document.getElementById('timerNum').innerText = count;
+        let t = setInterval(() => {
+            count--;
+            document.getElementById('timerNum').innerText = count;
+            if(count <= 0) {
+                clearInterval(t);
+                alert('✅ أحسنت بالتنفس الوعي! تم السماح بالدخول المؤقت إلى ' + platform);
+                closeModal();
+            }
+        }, 1000);
+        window.currentTimer = t;
+    }
+    function closeModal() {
+        clearInterval(window.currentTimer);
+        document.getElementById('lockModal').style.display = 'none';
+    }
+</script>
+</body>
+</html>
